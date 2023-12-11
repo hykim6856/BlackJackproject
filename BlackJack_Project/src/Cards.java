@@ -67,6 +67,8 @@ public class Cards {
 			cards[index1] = cards[index2];
 			cards[index2] = _temp;
 		}
+		
+		//==================================================== 
 		CardScore cardscore = new CardScore();
 		int count = 0;
 		int cardNum = 0;
@@ -105,41 +107,47 @@ public class Cards {
 			// ===============stop?
 			NumberService numService = new NumberService();
 			String str = numService.inputStop();
+			Win win =new Win();
+			
 			if (scoreP < 21) {
-				if (scoreP == 21 & scoreD == 21) {
+				int wNum = win.whoWinner(scoreP,scoreD);
+				if (wNum==0) {
+					
 					System.out.println("플레이어와 딜러 모두 블랙잭");
 					System.out.println("아쉽게도 무승부입니다.");
 					break;
 
-				} else if (scoreP == 21) {
+				} else if (wNum==1) {
 					System.out.println("블랙잭");
 					System.out.println("축하합니다. 승리하셨습니다.");
 					break;
-				} else if (scoreD == 21) {
+				} else if (wNum==2) {
 					System.out.println("딜러의 블랙잭");
 					System.out.println("아쉽지만 패배하셨습니다.");
 					break;
-				} else if (scoreP > 21 & scoreD > 21) {
+				} else if (wNum==3) {
 
 					System.out.println("아쉽게도 무승부입니다.");
 					break;
 
-				} else if (scoreP > 21) {
+				} else if (wNum==4) {
 					System.out.println("burst");
 					System.out.println("아쉽지만 21을 초과하여 플레이어의 패배입니다.");
 					break;
-				} else if (scoreD > 21) {
+				} else if (wNum==5) {
 					System.out.println("burst");
 					System.out.println("축하합니다. 딜러가 21을 초과하여 플레이어의 승리입니다.");
 					break;
-				} else if (scoreD < 17) {
+				} else if (wNum==6) {
 					System.out.println("딜러의 패가 16이하 이므로 딜러가 패를 하나 더 가져갑니다.");
-					scoreD += cardscore.cardScore(cards[cardNum]);
-					cardNum++;
+					//scoreD += CardScore.cardScore(cards[cardNum]);
+					//cardNum++;
+					continue;
+				}else {
 					continue;
 				}
-				
 			}
+			
 			if (str.equalsIgnoreCase("yes")) {
 				break;
 				
@@ -150,7 +158,8 @@ public class Cards {
 		} // end while
 		System.out.println("딜러점수 : " + scoreD);
 		System.out.println("내 점수 : " + scoreP);
-		// 여기에다가 총합...더하기? 웅,,,아마,,,maybe..
+		
+		
 	}
 
 }
