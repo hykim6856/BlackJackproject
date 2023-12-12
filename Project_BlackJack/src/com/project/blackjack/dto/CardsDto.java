@@ -2,7 +2,7 @@ package com.project.blackjack.dto;
 
 public class CardsDto {
 
-	public static String cards(int cardNum) {
+	public static void cards() {
 		String[] cards = new String[53];
 
 		cards[1] = "♠A";
@@ -69,6 +69,6 @@ public class CardsDto {
 			cards[index1] = cards[index2];
 			cards[index2] = _temp;
 		}
-		return cards[cardNum];
+		
 	}
 }
