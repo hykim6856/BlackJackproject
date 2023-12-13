@@ -86,13 +86,11 @@ public class CardService {
 		System.out.printf("%d 번째 게임\n", count);
 		Line.sLine(50);
 		System.out.println("딜러가 카드 두장을 갖습니다.");
-		// System.out.println("(딜러가 갖은 카드..이건나중에 가릴거임) : " + cards[cardNum]);
 		scoreD += this.cardsScore(cardsD.get(cardNum));
-		// System.out.println(scoreD);
 		cardNum++;
-		// System.out.println("(딜러가 갖은 카드..이건나중에 가릴거임) : " + cards[cardNum]);
+		 
 		scoreD += this.cardsScore(cardsD.get(cardNum));
-		// System.out.println(scoreD);
+		 
 		cardNum++;
 
 		System.out.printf("당신이 뽑은 카드 : %s\n", cardsD.get(cardNum));

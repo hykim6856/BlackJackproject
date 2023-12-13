@@ -2,6 +2,7 @@ package com.project.blackjack.service;
 
 import java.util.Scanner;
 
+import com.project.blackjack.utils.Card;
 import com.project.blackjack.utils.Line;
 
 public class CardService {
@@ -12,6 +13,9 @@ public class CardService {
 	public int cardNum;
 	public int scoreD; // 딜러 스코어
 	public int scoreP; // 플레이어 스코어
+	public int winnerD = 0;
+	public int winnerP = 0;
+	public int winnerNo = 0;
 
 	// 생성자
 	public CardService() {
@@ -56,8 +60,8 @@ public class CardService {
 
 		// 카드 섞기
 		for (int i = 0; i < 100; i++) {
-			int index1 = (int) (Math.random() * cards.length );
-			int index2 = (int) (Math.random() * cards.length );
+			int index1 = (int) (Math.random() * cards.length);
+			int index2 = (int) (Math.random() * cards.length);
 
 			String temp = cards[index1];
 			cards[index1] = cards[index2];
@@ -66,32 +70,36 @@ public class CardService {
 
 		scoreP = 0;
 		scoreD = 0;
+		cardNum = 0;
 		count++;
 
 		Line.dLine(50);
 		System.out.printf("%d 번째 게임\n", count);
+		System.out.printf("%d승 %d패 %d무\n",winnerP,winnerD,winnerNo);
 		Line.sLine(50);
 		System.out.println("딜러가 카드 두장을 갖습니다.");
 		System.out.println();
-		//System.err.println("(딜러가 갖은 카드..이건나중에 가릴거임) : " + cards[cardNum]);
+		// System.err.println("(딜러가 갖은 카드..이건나중에 가릴거임) : " + cards[cardNum]);
 		scoreD += cardsScore(cards[cardNum]);
-		//System.out.println(scoreD);
+		// System.out.println(scoreD);
 		cardNum++;
-		//System.err.println("(딜러가 갖은 카드..이건나중에 가릴거임) : " + cards[cardNum]);
+		// System.err.println("(딜러가 갖은 카드..이건나중에 가릴거임) : " + cards[cardNum]);
 		scoreD += cardsScore(cards[cardNum]);
-		//System.err.println(scoreD);
+		// System.err.println(scoreD);
 		cardNum++;
 
-		System.out.printf("당신이 뽑은 카드 : %s\n", cards[cardNum]);
+		System.out.println("< 플레이어가 뽑은 카드 >");
+		Card.printCard(cards[cardNum]);
 		scoreP += cardsScore(cards[cardNum]);
 		cardNum++;
 		// System.out.println(scoreP);
 
-		System.out.printf("당신이 뽑은 카드 : %s\n", cards[cardNum]);
+		// System.out.printf("당신이 뽑은 카드 : %s\n", cards[cardNum]);
+		Card.printCard(cards[cardNum]);
 		scoreP += cardsScore(cards[cardNum]);
 		cardNum++;
 
-		System.out.println("현재 플레이어의 카드 : " + scoreP);
+		System.out.println("현재 플레이어의 스코어 : " + scoreP);
 		System.out.println();
 
 		while (scoreD < 17) {
@@ -113,10 +121,11 @@ public class CardService {
 				}
 				System.out.println("**철자를 올바르게 입력했는지 확인해보세요**");
 			} // end while
-			System.out.printf("당신이 뽑은 카드 : %s\n", cards[cardNum]);
+			System.out.println("< 새로 뽑은 카드 >");
+			Card.printCard(cards[cardNum]);
 			scoreP += cardsScore(cards[cardNum]);
 			cardNum++;
-			System.out.println("현재 플레이어의 카드 : "+scoreP);
+			System.out.println("현재 플레이어의 스코어 : " + scoreP);
 		}
 		return;
 	}
@@ -128,57 +137,69 @@ public class CardService {
 			System.out.println("플레이어와 딜러 모두 블랙잭");
 			System.out.println("아쉽게도 무승부입니다.");
 			System.out.println();
+			winnerNo++;
 
 		} else if (scoreP == 21) {
 			System.out.println();
 			System.out.println("+-+-블랙잭-+-+");
 			System.out.println("축하합니다. 승리하셨습니다.");
 			System.out.println();
+			winnerP++;
 
 		} else if (scoreD == 21) {
 			System.out.println();
 			System.out.println("--딜러의 블랙잭--");
 			System.out.println("아쉽지만 패배하셨습니다.");
 			System.out.println();
+			winnerD++;
 
 		} else if (scoreP > 21 & scoreD > 21) {
 			System.out.println();
 			System.out.println("아쉽게도 무승부입니다.");
 			System.out.println();
+			winnerNo++;
 
 		} else if (scoreP > 21) {
 			System.out.println();
 			System.out.println("플레이어의 burst");
 			System.out.println("아쉽지만 21을 초과하여 플레이어의 패배입니다.");
 			System.out.println();
-			
+			winnerD++;
+
 		} else if (scoreD > 21) {
 			System.out.println();
 			System.out.println("딜러의 burst");
 			System.out.println("축하합니다. 딜러가 21을 초과하여 플레이어의 승리입니다.");
 			System.out.println();
-			
+			winnerP++;
+
 		} else if (scoreD < scoreP) {
 			System.out.println();
+			System.out.println("축하합니다. 승리하셨습니다.");
 			System.out.println("딜러의 패보다 21에 더 가까움으로 플레이어의 승리입니다.");
 			System.out.printf("딜러의 패 : %d ", scoreD);
 			System.out.printf("플레이어의 패 : %d\n", scoreP);
 			System.out.println();
-			
+			winnerP++;
+
 		} else if (scoreD > scoreP) {
 			System.out.println();
+			System.out.println("아쉽지만. 패배하셨습니다.");
 			System.out.println("딜러의 패가 21에 더 가까움으로 플레이어의 패배입니다.");
 			System.out.printf("딜러의 패 : %d ", scoreD);
 			System.out.printf("플레이어의 패 : %d\n", scoreP);
 			System.out.println();
-			
+			winnerD++;
+
 		} else if (scoreD == scoreP) {
 			System.out.println();
 			System.out.println("모두 동점이므로 무승부입니다.");
 			System.out.printf("딜러의 패 : %d ", scoreD);
 			System.out.printf("플레이어의 패 : %d\n", scoreP);
 			System.out.println();
-		}else {
+			winnerNo++;
+
+		} else {
 			System.err.println("이곳까지 보여지면 오류난거니 확인해봐야함.");
 			System.out.printf("딜러의 패 : %d ", scoreD);
 			System.out.printf("플레이어의 패 : %d\n", scoreP);
@@ -192,7 +213,7 @@ public class CardService {
 			cardService.gameService();
 			cardService.whowin();
 			while (true) {
-				
+
 				System.out.print("new game? (y/n) >>");
 
 				String str = scan.nextLine();
