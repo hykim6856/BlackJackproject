@@ -13,12 +13,9 @@ public class Line {
 	}
 	
 	public static void pLine(int length) {
-		System.out.println("+-".repeat(length/2));
+		System.out.println("+-+".repeat(length));
 
 	}
 
-	public static void lLine(int length) {
-		System.out.println("/".repeat(length));
-
-	}
+	
 }
