@@ -189,7 +189,7 @@ public class CardService {
 			System.out.println();
 			System.out.println("[{{플레이어와 딜러 모두 블랙잭}}]");
 			System.out.println("아쉽게도 무승부입니다.");
-			System.out.printf("딜러의 패 : %d ", scoreD);
+			System.out.printf("딜러의 패 : %d \n", scoreD);
 			System.out.printf("플레이어의 패 : %d\n", scoreP);
 			System.out.println();
 			System.out.printf("베팅한 %d P 는 그대로 돌려받습니다.\n", betmoney);
@@ -200,7 +200,7 @@ public class CardService {
 			System.out.println();
 			System.out.println("[{{+-+-블랙잭-+-+}}]");
 			System.out.println("축하합니다. 승리하셨습니다.");
-			System.out.printf("딜러의 패 : %d ", scoreD);
+			System.out.printf("딜러의 패 : %d \n", scoreD);
 			System.out.printf("플레이어의 패 : %d\n", scoreP);
 			System.out.println();
 			System.out.printf("베팅한 %d P 의 두 배인 %d P 얻습니다.\n", betmoney, betmoney * 2);
@@ -212,7 +212,7 @@ public class CardService {
 			System.out.println();
 			System.out.println("[{{--딜러의 블랙잭--}}]");
 			System.out.println("아쉽지만 패배하셨습니다.");
-			System.out.printf("딜러의 패 : %d ", scoreD);
+			System.out.printf("딜러의 패 : %d \n", scoreD);
 			System.out.printf("플레이어의 패 : %d\n", scoreP);
 			System.out.println();
 			System.out.printf("베팅한 %d P 를 잃었습니다.\n", betmoney);
@@ -223,7 +223,7 @@ public class CardService {
 		} else if (scoreP > 21 && scoreD > 21) {
 			System.out.println();
 			System.out.println("아쉽게도 무승부입니다.");
-			System.out.printf("딜러의 패 : %d ", scoreD);
+			System.out.printf("딜러의 패 : %d \n", scoreD);
 			System.out.printf("플레이어의 패 : %d\n", scoreP);
 			System.out.println();
 			System.out.printf("베팅한 %d P 는 그대로 돌려받습니다.\n", betmoney);
@@ -234,7 +234,7 @@ public class CardService {
 			System.out.println();
 			System.out.println("플레이어의 burst");
 			System.out.println("아쉽지만 21을 초과하여 플레이어의 패배입니다.");
-			System.out.printf("딜러의 패 : %d ", scoreD);
+			System.out.printf("딜러의 패 : %d \n", scoreD);
 			System.out.printf("플레이어의 패 : %d\n", scoreP);
 			System.out.println();
 			System.out.printf("베팅한 %d P 를 잃었습니다.\n", betmoney);
@@ -246,7 +246,7 @@ public class CardService {
 			System.out.println();
 			System.out.println("딜러의 burst");
 			System.out.println("축하합니다. 딜러가 21을 초과하여 플레이어의 승리입니다.");
-			System.out.printf("딜러의 패 : %d ", scoreD);
+			System.out.printf("딜러의 패 : %d \n", scoreD);
 			System.out.printf("플레이어의 패 : %d\n", scoreP);
 			System.out.println();
 			System.out.printf("베팅한 %d P 의 두 배인 %d P 얻습니다.\n", betmoney, betmoney * 2);
@@ -258,7 +258,7 @@ public class CardService {
 			System.out.println();
 			System.out.println("축하합니다. 승리하셨습니다.");
 			System.out.println("딜러의 패보다 21에 더 가까움으로 플레이어의 승리입니다.");
-			System.out.printf("딜러의 패 : %d ", scoreD);
+			System.out.printf("딜러의 패 : %d \n", scoreD);
 			System.out.printf("플레이어의 패 : %d\n", scoreP);
 			System.out.println();
 			System.out.printf("베팅한 %d P 의 두 배인 %d P 얻습니다.\n", betmoney, betmoney * 2);
@@ -270,7 +270,7 @@ public class CardService {
 			System.out.println();
 			System.out.println("아쉽지만. 패배하셨습니다.");
 			System.out.println("딜러의 패가 21에 더 가까움으로 플레이어의 패배입니다.");
-			System.out.printf("딜러의 패 : %d ", scoreD);
+			System.out.printf("딜러의 패 : %d \n", scoreD);
 			System.out.printf("플레이어의 패 : %d\n", scoreP);
 			System.out.println();
 			System.out.printf("베팅한 %d P 를 잃었습니다.\n", betmoney);
@@ -281,7 +281,7 @@ public class CardService {
 		} else if (scoreD == scoreP) {
 			System.out.println();
 			System.out.println("모두 동점이므로 무승부입니다.");
-			System.out.printf("딜러의 패 : %d ", scoreD);
+			System.out.printf("딜러의 패 : %d \n", scoreD);
 			System.out.printf("플레이어의 패 : %d\n", scoreP);
 			System.out.println();
 			System.out.printf("베팅한 %d P 는 그대로 돌려받습니다.\n", betmoney);
@@ -290,7 +290,7 @@ public class CardService {
 
 		} else {
 			System.err.println("이곳까지 보여지면 오류난거니 확인해봐야함.");
-			System.out.printf("딜러의 패 : %d ", scoreD);
+			System.out.printf("딜러의 패 : %d \n", scoreD);
 			System.out.printf("플레이어의 패 : %d\n", scoreP);
 		}
 
@@ -319,7 +319,7 @@ public class CardService {
 				return betmoney;
 			}
 			Line.lLine(50);
-			System.out.printf("베팅한 포인트가 너무 작거나 큽니다. 1~%d 까지의 범위의 정수로 베팅해주세요", coin);
+			System.out.printf("베팅한 포인트가 너무 작거나 큽니다. 1~%d 까지의 범위의 정수로 베팅해주세요\n", coin);
 			Line.lLine(50);
 		}
 	}
